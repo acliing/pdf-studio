@@ -1,0 +1,946 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="paperly-token" content="__PAPERLY_TOKEN__">
+  <meta name="paperly-version" content="__PAPERLY_VERSION__">
+  <title>纸间 PDF · 轻巧的 PDF 工作台</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-logo" viewBox="0 0 24 24">
+      <path d="M6.7 4.3h7.1l4.3 4.3v10.2a1 1 0 0 1-1 1H6.7a1 1 0 0 1-1-1V5.3a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.7"/>
+      <path d="M13.8 4.5v4.3h4.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+      <path d="M9 13.2h5.4M9 16h3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-organize" viewBox="0 0 24 24">
+      <rect x="4" y="4" width="6.3" height="6.3" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/>
+      <rect x="13.7" y="4" width="6.3" height="6.3" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/>
+      <rect x="4" y="13.7" width="6.3" height="6.3" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/>
+      <rect x="13.7" y="13.7" width="6.3" height="6.3" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/>
+    </symbol>
+    <symbol id="i-compose" viewBox="0 0 24 24">
+      <path d="M4.5 5.3h6.2l2 2v11.4H4.5V5.3Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+      <path d="M14.5 7.2h4.8v11.2h-5.9v-1.9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+      <path d="M10.5 9.7h4.2m0 0-1.8-1.8m1.8 1.8-1.8 1.8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M15.3 15.1h-4.2m0 0 1.8 1.8m-1.8-1.8 1.8-1.8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-merge" viewBox="0 0 24 24">
+      <path d="M7 4.5h5l3 3v7.2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5.5a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.7"/>
+      <path d="M12 8.5h5.2a1 1 0 0 1 1 1V18a1 1 0 0 1-1 1H8.8a1 1 0 0 1-1-1v-2.3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      <path d="M9.5 20.2v-3.5M7.8 18.4l1.7 1.8 1.8-1.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-split" viewBox="0 0 24 24">
+      <path d="M6 5.2h4.2M6 18.8h4.2M8.1 5.2v3.1c0 1 .5 1.9 1.4 2.5l3.9 2.4c.9.6 1.4 1.5 1.4 2.5v3.1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      <path d="m17.2 4.6 2 2-2 2M17.2 15.4l2 2-2 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-image-pdf" viewBox="0 0 24 24">
+      <rect x="3.8" y="5.2" width="10.7" height="10.7" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+      <circle cx="7.6" cy="9" r="1.25" fill="none" stroke="currentColor" stroke-width="1.4"/>
+      <path d="m5.3 14 3-3 2.2 2.1 1.5-1.4 2.5 2.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M16.9 9.5h3.3v9.1a1 1 0 0 1-1 1h-7.6a1 1 0 0 1-1-1v-3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-pdf-image" viewBox="0 0 24 24">
+      <path d="M6.6 3.9h7.1l4.3 4.3v8.3a1 1 0 0 1-1 1H6.6a1 1 0 0 1-1-1V4.9a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.7"/>
+      <path d="M13.7 4.2v4.3h4.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+      <rect x="8.3" y="12.3" width="6.9" height="4.9" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <path d="m8.8 16.5 2-1.8 1.4 1.2 1.2-1 1.3 1.4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V4.8m0 0L7.8 9M12 4.8 16.2 9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 14.8v3.3a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3.8 7.6a1.5 1.5 0 0 1 1.5-1.5h4l1.8 2h7.6a1.5 1.5 0 0 1 1.5 1.5v7.8a1.5 1.5 0 0 1-1.5 1.5H5.3a1.5 1.5 0 0 1-1.5-1.5V7.6Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4.5 7.2h15M9.2 7.2V5.4c0-.6.5-1.1 1.1-1.1h3.4c.6 0 1.1.5 1.1 1.1v1.8M7 7.2l.8 11.3c0 .8.7 1.4 1.5 1.4h5.4c.8 0 1.5-.6 1.5-1.4L17 7.2M10 10.5v6M14 10.5v6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4.5v10.6m0 0 4.2-4.2M12 15.1l-4.2-4.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 17.7v1.2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-undo" viewBox="0 0 24 24"><path d="M8.5 7.5 4.8 11l3.7 3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.3 11h8.1a5.1 5.1 0 0 1 5.1 5.1v.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5.2 12.4 4.3 4.2 9.3-9.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m14.8 5.5-6.5 6.5 6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9.2 5.5 6.5 6.5-6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-grip" viewBox="0 0 24 24"><circle cx="9" cy="6.5" r="1.2" fill="currentColor"/><circle cx="15" cy="6.5" r="1.2" fill="currentColor"/><circle cx="9" cy="12" r="1.2" fill="currentColor"/><circle cx="15" cy="12" r="1.2" fill="currentColor"/><circle cx="9" cy="17.5" r="1.2" fill="currentColor"/><circle cx="15" cy="17.5" r="1.2" fill="currentColor"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M3.7 12s2.9-5.2 8.3-5.2S20.3 12 20.3 12s-2.9 5.2-8.3 5.2S3.7 12 3.7 12Z" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="2.4" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3.8 19 6v5.7c0 4-3.1 7-7 8.5-3.9-1.5-7-4.5-7-8.5V6l7-2.2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m8.8 12 2.1 2.1 4.3-4.3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M9.8 9.3a2.3 2.3 0 1 1 3.5 2c-.8.5-1.3 1-1.3 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="16.6" r="1" fill="currentColor"/></symbol>
+    <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 18V6m0 0L7.5 10.5M12 6l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 6v12m0 0 4.5-4.5M12 18l-4.5-4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M6.7 3.9h7.1l4.3 4.3v11.9H6.7a1 1 0 0 1-1-1V4.9a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M13.8 4.2v4.3h4.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 1.5 4.3L18 9l-4.5 1.7L12 15l-1.5-4.3L6 9l4.5-1.7L12 3Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m18.3 14.5.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></symbol>
+    <symbol id="i-sort" viewBox="0 0 24 24"><path d="M7.5 5.5v13m0 0L4.8 15.8M7.5 18.5l2.7-2.7M16.5 18.5v-13m0 0 2.7 2.7M16.5 5.5l-2.7 2.7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </svg>
+
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" data-tool="organize" aria-label="纸间 PDF 首页">
+        <span class="brand-mark"><svg class="icon"><use href="#i-logo"></use></svg></span>
+        <span class="brand-copy"><strong>纸间</strong><small>PDF STUDIO</small></span>
+      </a>
+
+      <div class="nav-label">工作台</div>
+      <nav class="tool-nav" aria-label="主要工具">
+        <button class="nav-item is-active" type="button" data-tool="organize">
+          <svg class="icon"><use href="#i-organize"></use></svg>
+          <span>整理页面</span>
+          <span class="nav-dot"></span>
+        </button>
+        <button class="nav-item" type="button" data-tool="merge">
+          <svg class="icon"><use href="#i-merge"></use></svg>
+          <span>合并 PDF</span>
+          <span class="nav-dot"></span>
+        </button>
+        <button class="nav-item" type="button" data-tool="split">
+          <svg class="icon"><use href="#i-split"></use></svg>
+          <span>拆分 PDF</span>
+          <span class="nav-dot"></span>
+        </button>
+        <button class="nav-item" type="button" data-tool="images">
+          <svg class="icon"><use href="#i-image-pdf"></use></svg>
+          <span>图片转 PDF</span>
+          <span class="nav-dot"></span>
+        </button>
+        <button class="nav-item" type="button" data-tool="pdf2img">
+          <svg class="icon"><use href="#i-pdf-image"></use></svg>
+          <span>PDF 转图片</span>
+          <span class="nav-dot"></span>
+        </button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="privacy-card">
+          <div class="privacy-icon"><svg class="icon"><use href="#i-shield"></use></svg></div>
+          <div>
+            <strong>只在你的电脑上处理</strong>
+            <p>不上传、不联网，关闭窗口后文件不会离开本机。</p>
+          </div>
+        </div>
+        <button class="help-link" type="button" id="helpBtn">
+          <svg class="icon"><use href="#i-help"></use></svg>
+          <span>使用小贴士</span>
+          <span class="help-arrow">↗</span>
+        </button>
+      </div>
+    </aside>
+
+    <div class="main-shell">
+      <header class="topbar">
+        <div class="breadcrumb">
+          <span>工作台</span>
+          <span class="breadcrumb-sep">/</span>
+          <strong id="crumbText">整理页面</strong>
+        </div>
+        <div class="top-actions">
+          <span class="local-chip"><i></i>本机离线处理</span>
+          <button class="icon-button" type="button" id="helpIconBtn" aria-label="帮助">
+            <svg class="icon"><use href="#i-help"></use></svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="content">
+        <!-- 整理页面 -->
+        <section class="tool-panel is-active" id="panel-organize" data-panel="organize">
+          <div class="panel-head">
+            <div>
+              <span class="eyebrow"><i></i>PAGE ORGANIZER</span>
+              <h1>整理页面</h1>
+              <p>拖动调整顺序，也可以添加第二份 PDF，左右拖动页面进行替换或插入。</p>
+            </div>
+            <button class="btn btn-primary" type="button" id="organizeOpenBtn">
+              <svg class="icon"><use href="#i-plus"></use></svg>
+              打开 PDF
+            </button>
+          </div>
+
+          <div class="empty-card" id="organizeEmpty">
+            <div class="empty-illustration" aria-hidden="true">
+              <svg viewBox="0 0 172 132" fill="none">
+                <path d="M35 25.5h59.5L119 50v56H35V25.5Z" fill="#fffdf8" stroke="#24372e" stroke-width="1.6"/>
+                <path d="M94 25.8V50h24.2" stroke="#24372e" stroke-width="1.6"/>
+                <path d="M49 64h41M49 74h52M49 84h31" stroke="#b9c9be" stroke-width="4" stroke-linecap="round"/>
+                <path d="M61 17h58.5L144 41.5V101H61V17Z" fill="#e2eee6" stroke="#2f6b55" stroke-width="1.6"/>
+                <path d="M119 17.3v24.2h24.2" stroke="#2f6b55" stroke-width="1.6"/>
+                <path d="M75 57h42M75 67h52M75 77h28" stroke="#8db9a4" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="139" cy="103" r="17" fill="#f2c9a8"/>
+                <path d="M139 95v16M131 103h16" stroke="#7c3f2a" stroke-width="2" stroke-linecap="round"/>
+                <path d="m28 104 3 6 6 3-6 3-3 6-3-6-6-3 6-3 3-6Z" fill="#e7a77e"/>
+              </svg>
+            </div>
+            <h2>把一份 PDF 放进来</h2>
+            <p>先打开目标文档；需要取页时，再添加第二份 PDF。</p>
+            <button class="btn btn-primary" type="button" id="organizeChooseBtn">
+              <svg class="icon"><use href="#i-folder"></use></svg>
+              选择目标 PDF
+            </button>
+            <span class="empty-note">打开后可添加来源 PDF · 单个文件最大 250 MB</span>
+          </div>
+
+          <div class="organize-workspace" id="organizeWorkspace" hidden>
+            <div class="workspace-bar organize-workspace-bar">
+              <div>
+                <h2>页面工作区</h2>
+                <p id="organizeWorkspaceMeta">1 个文件 · 输出 0 页</p>
+              </div>
+              <div class="inline-actions">
+                <button class="btn btn-small btn-secondary" type="button" id="organizeAddSourceBtn">
+                  <svg class="icon"><use href="#i-plus"></use></svg>
+                  添加来源 PDF
+                </button>
+                <button class="btn btn-small btn-quiet" type="button" id="organizeReset">
+                  <svg class="icon"><use href="#i-undo"></use></svg>
+                  恢复原样
+                </button>
+              </div>
+            </div>
+
+            <div class="organize-panes" id="organizePanes">
+              <section class="organize-pane target-pane" id="targetPane">
+                <div class="pane-head">
+                  <div class="pane-doc">
+                    <span class="pane-tag target">目标</span>
+                    <div class="pane-doc-text">
+                      <strong id="organizeDocName">文档.pdf</strong>
+                      <p id="organizeDocMeta">0 页</p>
+                    </div>
+                  </div>
+                  <button class="text-button" type="button" id="organizeReplace">更换目标</button>
+                </div>
+
+                <div class="page-toolbar pane-toolbar">
+                  <div class="toolbar-left">
+                    <label class="check-pill">
+                      <input type="checkbox" id="organizeSelectAll">
+                      <span class="check-box"><svg class="icon"><use href="#i-check"></use></svg></span>
+                      <span>全选</span>
+                    </label>
+                    <span class="toolbar-count" id="pageCountLabel">输出 0 页</span>
+                  </div>
+                  <p class="page-hint" id="targetPageHint">拖动排序 · 双击预览</p>
+                  <div class="pane-toolbar-actions">
+                    <button class="btn btn-small btn-danger" type="button" id="organizeDeleteSelected" disabled>删除所选</button>
+                    <button class="btn btn-small btn-ghost" type="button" id="organizeUndo" disabled>
+                      <svg class="icon"><use href="#i-undo"></use></svg>
+                      撤销
+                    </button>
+                  </div>
+                </div>
+
+                <div class="page-grid" id="pageGrid" aria-label="目标 PDF 页面"></div>
+              </section>
+
+              <section class="organize-pane source-pane" id="sourcePane" hidden>
+                <div class="pane-head">
+                  <div class="pane-doc">
+                    <span class="pane-tag source">来源</span>
+                    <div class="pane-doc-text">
+                      <strong id="sourceDocName">来源.pdf</strong>
+                      <p id="sourceDocMeta">0 页</p>
+                    </div>
+                  </div>
+                  <div class="pane-head-actions">
+                    <button class="text-button" type="button" id="sourceReplace">更换</button>
+                    <button class="text-button is-muted" type="button" id="sourceRemove">移除</button>
+                  </div>
+                </div>
+
+                <div class="page-toolbar pane-toolbar">
+                  <div class="toolbar-left">
+                    <label class="check-pill">
+                      <input type="checkbox" id="sourceSelectAll">
+                      <span class="check-box"><svg class="icon"><use href="#i-check"></use></svg></span>
+                      <span>全选</span>
+                    </label>
+                    <span class="toolbar-count" id="sourceCountLabel">来源 0 页</span>
+                  </div>
+                  <p class="page-hint" id="sourcePageHint">拖到左侧复制 · 双击预览</p>
+                  <div class="pane-toolbar-actions">
+                    <button class="btn btn-small btn-danger" type="button" id="sourceDeleteSelected" disabled>删除所选</button>
+                  </div>
+                </div>
+
+                <div class="page-grid source-grid" id="sourcePageGrid" aria-label="来源 PDF 页面"></div>
+              </section>
+            </div>
+
+            <div class="save-bar">
+              <label class="name-field">
+                <span>保存为</span>
+                <input type="text" id="organizeName" autocomplete="off" spellcheck="false" aria-label="输出文件名">
+                <em>.pdf</em>
+              </label>
+              <div class="save-meta" id="organizeSaveMeta">全部页面</div>
+              <button class="btn btn-primary btn-save" type="button" id="organizeExportBtn">
+                <svg class="icon"><use href="#i-download"></use></svg>
+                导出 PDF
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- 替换 / 插入 -->
+        <section class="tool-panel" id="panel-compose" data-panel="compose" hidden>
+          <div class="panel-head">
+            <div>
+              <span class="eyebrow"><i></i>REPLACE / INSERT</span>
+              <h1>替换 / 插入</h1>
+              <p>从一份 PDF 取几页，替换目标 PDF 的页面，或插入到指定位置。</p>
+            </div>
+            <button class="btn btn-quiet" type="button" id="composeResetBtn" hidden>
+              <svg class="icon"><use href="#i-undo"></use></svg>
+              清空重来
+            </button>
+          </div>
+
+          <div class="compose-slots">
+            <div class="compose-slot" id="composeTargetSlot">
+              <div class="slot-head">
+                <span class="slot-label">目标 PDF</span>
+                <span class="slot-role">在这里修改</span>
+              </div>
+              <div class="slot-empty" id="composeTargetEmpty">
+                <span class="slot-icon"><svg class="icon"><use href="#i-file"></use></svg></span>
+                <strong>选择目标 PDF</strong>
+                <p>要替换或插入页面的文档</p>
+                <button class="btn btn-secondary btn-small" type="button" id="composeTargetBtn">选择文件</button>
+              </div>
+              <div class="slot-doc" id="composeTargetDoc" hidden>
+                <div class="slot-cover"><img id="composeTargetCover" alt="目标 PDF 封面"></div>
+                <div class="slot-info">
+                  <strong id="composeTargetName">目标.pdf</strong>
+                  <p id="composeTargetMeta">0 页</p>
+                  <button class="text-button" type="button" id="composeTargetReplace">更换目标文件</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="compose-bridge" aria-hidden="true">
+              <span>取页</span>
+              <svg viewBox="0 0 52 18" fill="none">
+                <path d="M50 9H4M15 3 6 9l9 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+
+            <div class="compose-slot" id="composeSourceSlot">
+              <div class="slot-head">
+                <span class="slot-label">来源 PDF</span>
+                <span class="slot-role">从这里取页</span>
+              </div>
+              <div class="slot-empty" id="composeSourceEmpty">
+                <span class="slot-icon"><svg class="icon"><use href="#i-file"></use></svg></span>
+                <strong>选择来源 PDF</strong>
+                <p>提供替换页或插入页的文档</p>
+                <button class="btn btn-secondary btn-small" type="button" id="composeSourceBtn">选择文件</button>
+              </div>
+              <div class="slot-doc" id="composeSourceDoc" hidden>
+                <div class="slot-cover"><img id="composeSourceCover" alt="来源 PDF 封面"></div>
+                <div class="slot-info">
+                  <strong id="composeSourceName">来源.pdf</strong>
+                  <p id="composeSourceMeta">0 页</p>
+                  <button class="text-button" type="button" id="composeSourceReplace">更换来源文件</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="compose-tip">先选目标文件，再选来源文件；两份文件都只在本次操作中使用，不会改动原文件。</p>
+
+          <div class="compose-workspace" id="composeWorkspace" hidden>
+            <div class="compose-layout">
+              <div class="compose-source-panel">
+                <div class="workspace-bar">
+                  <div>
+                    <h2>选择来源页面</h2>
+                    <p id="composeSourceSummary">尚未选择页面</p>
+                  </div>
+                  <div class="inline-actions">
+                    <button class="btn btn-small btn-quiet" type="button" id="composeSelectAllBtn">全选</button>
+                    <button class="btn btn-small btn-quiet" type="button" id="composeClearBtn">清空</button>
+                  </div>
+                </div>
+
+                <div class="source-range-bar">
+                  <label for="composeRange">按页码</label>
+                  <input type="text" id="composeRange" placeholder="1-3, 5" spellcheck="false" autocomplete="off">
+                  <button class="btn btn-small btn-secondary" type="button" id="composeRangeApplyBtn">选中</button>
+                  <span>用逗号分隔</span>
+                </div>
+
+                <div class="source-page-grid" id="composeSourceGrid" aria-label="来源 PDF 页面选择"></div>
+              </div>
+
+              <aside class="compose-side">
+                <div class="option-card">
+                  <div class="section-heading">
+                    <span class="section-label">合成方式</span>
+                    <p>替换目标页，或插入到目标位置</p>
+                  </div>
+
+                  <div class="compose-modes">
+                    <label class="mode-option is-selected">
+                      <input type="radio" name="composeMode" value="replace" checked>
+                      <span class="mode-radio"></span>
+                      <span class="mode-copy"><strong>替换页面</strong><small>用来源页替换目标页范围</small></span>
+                    </label>
+                    <label class="mode-option">
+                      <input type="radio" name="composeMode" value="insert">
+                      <span class="mode-radio"></span>
+                      <span class="mode-copy"><strong>插入页面</strong><small>保留目标页，插入到指定位置</small></span>
+                    </label>
+                  </div>
+
+                  <div class="compose-location" id="composeReplacePanel">
+                    <label class="field-label">目标页面范围</label>
+                    <div class="page-range-row">
+                      <span>第</span>
+                      <input type="number" id="composeTargetStart" value="1" min="1" step="1" aria-label="替换起始页">
+                      <span>页 至 第</span>
+                      <input type="number" id="composeTargetEnd" value="1" min="1" step="1" aria-label="替换结束页">
+                      <span>页</span>
+                    </div>
+                    <p class="field-hint">来源页数量不必与目标范围相同，例如 2 页也可以替换 1 页。</p>
+                  </div>
+
+                  <div class="compose-location" id="composeInsertPanel" hidden>
+                    <label class="field-label" for="composeInsertPosition">插入位置</label>
+                    <select class="text-input" id="composeInsertPosition">
+                      <option value="start">文档开头</option>
+                      <option value="after" selected>指定页之后</option>
+                      <option value="end">文档末尾</option>
+                    </select>
+                    <div class="insert-page-row" id="composeInsertPageRow">
+                      <span>插入到第</span>
+                      <input type="number" id="composeInsertPage" value="1" min="1" step="1" aria-label="插入位置页码">
+                      <span>页之后</span>
+                    </div>
+                    <p class="field-hint">选择“文档开头”会在第 1 页前插入；选择“末尾”会附在最后一页后。</p>
+                  </div>
+
+                  <div class="compose-impact" id="composeSummary">先选择来源页面。</div>
+
+                  <label class="name-field stacked">
+                    <span>保存为</span>
+                    <div class="input-with-ext">
+                      <input type="text" id="composeName" autocomplete="off" spellcheck="false" aria-label="输出文件名">
+                      <em>.pdf</em>
+                    </div>
+                  </label>
+                  <button class="btn btn-primary btn-block" type="button" id="composeExportBtn" disabled>
+                    <svg class="icon"><use href="#i-download"></use></svg>
+                    生成新 PDF
+                  </button>
+                  <p class="options-footnote" id="composeSaveMeta">选择两份 PDF 后开始</p>
+                </div>
+
+                <div class="result-card" id="composeResult" hidden>
+                  <div class="result-icon"><svg class="icon"><use href="#i-check"></use></svg></div>
+                  <div class="result-copy">
+                    <strong id="composeResultTitle">新 PDF 已生成</strong>
+                    <p id="composeResultMeta"></p>
+                  </div>
+                  <div class="result-actions">
+                    <button class="btn btn-secondary" type="button" id="composeContinueBtn">继续整理</button>
+                    <button class="btn btn-primary" type="button" id="composeDownloadBtn">
+                      <svg class="icon"><use href="#i-download"></use></svg>
+                      下载 PDF
+                    </button>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <!-- 合并 -->
+        <section class="tool-panel" id="panel-merge" data-panel="merge" hidden>
+          <div class="panel-head">
+            <div>
+              <span class="eyebrow"><i></i>MERGE FILES</span>
+              <h1>合并 PDF</h1>
+              <p>添加多个 PDF，拖动文件卡片调整先后顺序，再合并成一份文档。</p>
+            </div>
+            <button class="btn btn-primary" type="button" id="mergeAddBtn">
+              <svg class="icon"><use href="#i-plus"></use></svg>
+              添加 PDF
+            </button>
+          </div>
+
+          <div class="empty-card" id="mergeEmpty">
+            <div class="empty-illustration compact" aria-hidden="true">
+              <svg viewBox="0 0 172 132" fill="none">
+                <path d="M30 33h49.5L101 54.5V106H30V33Z" fill="#f1ece1" stroke="#846f56" stroke-width="1.5"/>
+                <path d="M57 23h55l22 22v60H57V23Z" fill="#fffdf8" stroke="#24372e" stroke-width="1.6"/>
+                <path d="M112 23.3v21.7h21.7" stroke="#24372e" stroke-width="1.6"/>
+                <path d="M71 61h42M71 71h51M71 81h29" stroke="#b9c9be" stroke-width="4" stroke-linecap="round"/>
+                <path d="M71 105c8-12 19-19 33-19" stroke="#2f6b55" stroke-width="2" stroke-dasharray="4 4"/>
+                <circle cx="110" cy="85" r="15" fill="#e2eee6" stroke="#2f6b55" stroke-width="1.5"/>
+                <path d="M110 78v14M103 85h14" stroke="#2f6b55" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h2>把需要合并的 PDF 放在一起</h2>
+            <p>支持一次选择多个文件，稍后还可以调整它们的顺序。</p>
+            <button class="btn btn-primary" type="button" id="mergeChooseBtn">
+              <svg class="icon"><use href="#i-folder"></use></svg>
+              选择多个 PDF
+            </button>
+            <span class="empty-note">最多 100 个文件 · 单个文件最大 250 MB</span>
+          </div>
+
+          <div class="merge-workspace" id="mergeWorkspace" hidden>
+            <div class="workspace-bar">
+              <div>
+                <h2>待合并文件</h2>
+                <p id="mergeSummary">0 个文件 · 共 0 页</p>
+              </div>
+              <div class="inline-actions">
+                <button class="btn btn-quiet" type="button" id="mergeClearBtn">清空</button>
+                <button class="btn btn-secondary" type="button" id="mergeAddMoreBtn">
+                  <svg class="icon"><use href="#i-plus"></use></svg>
+                  继续添加
+                </button>
+              </div>
+            </div>
+            <div class="merge-list" id="mergeList" aria-label="待合并文件列表"></div>
+
+            <div class="result-card" id="mergeResult" hidden>
+              <div class="result-icon"><svg class="icon"><use href="#i-check"></use></svg></div>
+              <div class="result-copy">
+                <strong id="mergeResultTitle">合并完成</strong>
+                <p id="mergeResultMeta"></p>
+              </div>
+              <div class="result-actions">
+                <button class="btn btn-secondary" type="button" id="mergeContinueBtn">继续整理</button>
+                <button class="btn btn-primary" type="button" id="mergeDownloadBtn">
+                  <svg class="icon"><use href="#i-download"></use></svg>
+                  下载 PDF
+                </button>
+              </div>
+            </div>
+
+            <div class="save-bar">
+              <label class="name-field">
+                <span>保存为</span>
+                <input type="text" id="mergeName" autocomplete="off" spellcheck="false" aria-label="输出文件名">
+                <em>.pdf</em>
+              </label>
+              <div class="save-meta" id="mergeSaveMeta">共 0 页</div>
+              <button class="btn btn-primary btn-save" type="button" id="mergeExportBtn">
+                <svg class="icon"><use href="#i-merge"></use></svg>
+                合并并下载
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- 拆分 -->
+        <section class="tool-panel" id="panel-split" data-panel="split" hidden>
+          <div class="panel-head">
+            <div>
+              <span class="eyebrow"><i></i>SPLIT PDF</span>
+              <h1>拆分 PDF</h1>
+              <p>按页码范围、固定页数或逐页拆开，结果会自动打包成一个 ZIP。</p>
+            </div>
+            <button class="btn btn-primary" type="button" id="splitOpenBtn">
+              <svg class="icon"><use href="#i-plus"></use></svg>
+              打开 PDF
+            </button>
+          </div>
+
+          <div class="empty-card" id="splitEmpty">
+            <div class="empty-illustration compact" aria-hidden="true">
+              <svg viewBox="0 0 172 132" fill="none">
+                <path d="M43 25h56l17 17v65H43V25Z" fill="#fffdf8" stroke="#24372e" stroke-width="1.6"/>
+                <path d="M99 25.3V42h16.8" stroke="#24372e" stroke-width="1.6"/>
+                <path d="M56 57h42M56 67h45M56 77h25" stroke="#b9c9be" stroke-width="4" stroke-linecap="round"/>
+                <path d="M86 88.5 127 64" stroke="#2f6b55" stroke-width="2.2" stroke-dasharray="5 4"/>
+                <circle cx="81" cy="91" r="6.5" fill="#e2eee6" stroke="#2f6b55" stroke-width="1.6"/>
+                <path d="m103 95 20-8.5-5.5 16.5-4.2-6.2-6.3-1.8Z" fill="#f2c9a8" stroke="#7c3f2a" stroke-width="1.2" stroke-linejoin="round"/>
+                <path d="m34 99 2.5 5 5 2.5-5 2.5-2.5 5-2.5-5-5-2.5 5-2.5 2.5-5Z" fill="#e7a77e"/>
+              </svg>
+            </div>
+            <h2>选择要拆分的 PDF</h2>
+            <p>打开后设置拆分方式，原文件不会被修改。</p>
+            <button class="btn btn-primary" type="button" id="splitChooseBtn">
+              <svg class="icon"><use href="#i-folder"></use></svg>
+              选择 PDF 文件
+            </button>
+            <span class="empty-note">支持最大 5000 页 · 全程本地处理</span>
+          </div>
+
+          <div class="split-workspace" id="splitWorkspace" hidden>
+            <div class="split-layout">
+              <div class="preview-card">
+                <div class="preview-card-head">
+                  <span class="section-label">当前文档</span>
+                  <button class="text-button" type="button" id="splitReplace">更换</button>
+                </div>
+                <div class="document-preview">
+                  <img id="splitCover" alt="PDF 封面预览">
+                  <span class="paper-shadow"></span>
+                </div>
+                <h2 id="splitDocName">文档.pdf</h2>
+                <p id="splitDocMeta">0 页</p>
+                <div class="doc-facts">
+                  <div><span>页数</span><strong id="splitFactPages">0</strong></div>
+                  <div><span>大小</span><strong id="splitFactSize">0 MB</strong></div>
+                </div>
+                <div class="mini-pages" id="splitMiniPages"></div>
+              </div>
+
+              <div class="settings-column">
+                <div class="option-card">
+                  <div class="section-heading">
+                    <span class="section-label">拆分方式</span>
+                    <p>选择最适合你的拆法</p>
+                  </div>
+                  <div class="mode-list" id="splitModes">
+                    <label class="mode-option is-selected">
+                      <input type="radio" name="splitMode" value="ranges" checked>
+                      <span class="mode-radio"></span>
+                      <span class="mode-copy"><strong>按页码范围</strong><small>每一段范围生成一份 PDF</small></span>
+                      <span class="mode-tag">灵活</span>
+                    </label>
+                    <label class="mode-option">
+                      <input type="radio" name="splitMode" value="every">
+                      <span class="mode-radio"></span>
+                      <span class="mode-copy"><strong>每 N 页一份</strong><small>适合扫描件、讲义和档案</small></span>
+                    </label>
+                    <label class="mode-option">
+                      <input type="radio" name="splitMode" value="single">
+                      <span class="mode-radio"></span>
+                      <span class="mode-copy"><strong>每页单独拆开</strong><small>每一页都成为一个 PDF</small></span>
+                    </label>
+                  </div>
+
+                  <div class="mode-detail" id="splitRangePanel">
+                    <label class="field-label" for="splitRanges">页码范围</label>
+                    <input class="text-input" type="text" id="splitRanges" placeholder="例如：1-3, 5, 8-10" spellcheck="false">
+                    <p class="field-hint">用逗号分隔，每一段会生成一个独立的 PDF。</p>
+                  </div>
+                  <div class="mode-detail" id="splitEveryPanel" hidden>
+                    <label class="field-label" for="splitEvery">每份包含</label>
+                    <div class="stepper">
+                      <button type="button" id="splitEveryMinus" aria-label="减少页数">−</button>
+                      <input type="number" id="splitEvery" value="10" min="1" step="1" aria-label="每份页数">
+                      <span>页</span>
+                      <button type="button" id="splitEveryPlus" aria-label="增加页数">+</button>
+                    </div>
+                    <p class="field-hint">最后一组不足 N 页时会自动保留剩余页面。</p>
+                  </div>
+                  <div class="mode-detail" id="splitSinglePanel" hidden>
+                    <div class="notice-line">
+                      <svg class="icon"><use href="#i-spark"></use></svg>
+                      <span id="splitSingleHint">每一页都会单独保存为一个 PDF 文件。</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="result-card" id="splitResult" hidden>
+                  <div class="result-icon"><svg class="icon"><use href="#i-check"></use></svg></div>
+                  <div class="result-copy">
+                    <strong id="splitResultTitle">拆分完成</strong>
+                    <p id="splitResultMeta"></p>
+                  </div>
+                  <div class="result-actions">
+                    <button class="btn btn-primary" type="button" id="splitDownloadBtn">
+                      <svg class="icon"><use href="#i-download"></use></svg>
+                      下载 ZIP
+                    </button>
+                  </div>
+                </div>
+
+                <div class="save-bar compact">
+                  <label class="name-field">
+                    <span>压缩包名称</span>
+                    <input type="text" id="splitName" autocomplete="off" spellcheck="false" aria-label="压缩包名称">
+                    <em>.zip</em>
+                  </label>
+                  <button class="btn btn-primary btn-save" type="button" id="splitExportBtn">
+                    <svg class="icon"><use href="#i-split"></use></svg>
+                    拆分并打包
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 图片转 PDF -->
+        <section class="tool-panel" id="panel-images" data-panel="images" hidden>
+          <div class="panel-head">
+            <div>
+              <span class="eyebrow"><i></i>IMAGES TO PDF</span>
+              <h1>图片转 PDF</h1>
+              <p>把照片、扫描图或截图整理成一份 PDF，可以自由调整顺序和页面样式。</p>
+            </div>
+            <button class="btn btn-primary" type="button" id="imagesAddBtn">
+              <svg class="icon"><use href="#i-plus"></use></svg>
+              添加图片
+            </button>
+          </div>
+
+          <div class="empty-card" id="imagesEmpty">
+            <div class="empty-illustration compact" aria-hidden="true">
+              <svg viewBox="0 0 172 132" fill="none">
+                <rect x="26" y="30" width="82" height="63" rx="9" fill="#fffdf8" stroke="#24372e" stroke-width="1.6" transform="rotate(-4 26 30)"/>
+                <circle cx="52" cy="52" r="7" fill="#f2c9a8" stroke="#7c3f2a" stroke-width="1.4"/>
+                <path d="m36 79 20-19 14 13 10-9 17 15" fill="#e2eee6" stroke="#2f6b55" stroke-width="1.7" stroke-linejoin="round"/>
+                <path d="M96 49h44l15 15v49H96V49Z" fill="#fffdf8" stroke="#2f6b55" stroke-width="1.6"/>
+                <path d="M140 49.3V64h14.8" stroke="#2f6b55" stroke-width="1.6"/>
+                <path d="M108 82h34M108 92h35M108 102h19" stroke="#b9c9be" stroke-width="4" stroke-linecap="round"/>
+                <path d="M129 24v12M123 30h12" stroke="#e7a77e" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h2>把图片变成一份干净的 PDF</h2>
+            <p>支持 JPG、PNG、WebP、BMP、TIFF，可批量添加。</p>
+            <button class="btn btn-primary" type="button" id="imagesChooseBtn">
+              <svg class="icon"><use href="#i-folder"></use></svg>
+              选择图片
+            </button>
+            <span class="empty-note">单张最大 250 MB · 自动修正照片方向</span>
+          </div>
+
+          <div class="images-workspace" id="imagesWorkspace" hidden>
+            <div class="workspace-bar">
+              <div>
+                <h2>图片顺序</h2>
+                <p id="imagesSummary">0 张图片</p>
+              </div>
+              <div class="inline-actions">
+                <button class="btn btn-quiet" type="button" id="imagesSortBtn">
+                  <svg class="icon"><use href="#i-sort"></use></svg>
+                  按名称排序
+                </button>
+                <button class="btn btn-secondary" type="button" id="imagesAddMoreBtn">
+                  <svg class="icon"><use href="#i-plus"></use></svg>
+                  添加图片
+                </button>
+              </div>
+            </div>
+
+            <div class="images-layout">
+              <div class="image-grid" id="imageGrid" aria-label="待转换的图片"></div>
+
+              <aside class="options-card">
+                <div class="section-heading">
+                  <span class="section-label">页面样式</span>
+                  <p>设置会应用到全部图片</p>
+                </div>
+
+                <label class="field-label">页面尺寸</label>
+                <div class="chip-group three" id="pageSizeGroup">
+                  <label class="chip"><input type="radio" name="pageSize" value="a4" checked><span>A4</span></label>
+                  <label class="chip"><input type="radio" name="pageSize" value="letter"><span>Letter</span></label>
+                  <label class="chip"><input type="radio" name="pageSize" value="auto"><span>跟随图片</span></label>
+                </div>
+                <p class="field-hint" id="pageSizeHint">A4 竖版，适合大多数打印和分享场景。</p>
+
+                <label class="field-label spaced">页面方向</label>
+                <div class="chip-group three" id="orientationGroup">
+                  <label class="chip"><input type="radio" name="orientation" value="auto" checked><span>自动</span></label>
+                  <label class="chip"><input type="radio" name="orientation" value="portrait"><span>纵向</span></label>
+                  <label class="chip"><input type="radio" name="orientation" value="landscape"><span>横向</span></label>
+                </div>
+
+                <label class="field-label spaced">页边距</label>
+                <div class="chip-group three" id="marginGroup">
+                  <label class="chip"><input type="radio" name="margin" value="0"><span>无</span></label>
+                  <label class="chip"><input type="radio" name="margin" value="18" checked><span>较窄</span></label>
+                  <label class="chip"><input type="radio" name="margin" value="36"><span>标准</span></label>
+                </div>
+
+                <div class="mini-note">
+                  <svg class="icon"><use href="#i-spark"></use></svg>
+                  <span>图片会完整显示，不会被裁切。</span>
+                </div>
+
+                <div class="options-divider"></div>
+
+                <label class="name-field stacked">
+                  <span>保存为</span>
+                  <div class="input-with-ext">
+                    <input type="text" id="imagesName" autocomplete="off" spellcheck="false" aria-label="输出文件名">
+                    <em>.pdf</em>
+                  </div>
+                </label>
+                <button class="btn btn-primary btn-block" type="button" id="imagesExportBtn">
+                  <svg class="icon"><use href="#i-download"></use></svg>
+                  生成 PDF
+                </button>
+                <p class="options-footnote" id="imagesSaveMeta">共 0 页</p>
+              </aside>
+            </div>
+
+            <div class="result-card" id="imagesResult" hidden>
+              <div class="result-icon"><svg class="icon"><use href="#i-check"></use></svg></div>
+              <div class="result-copy">
+                <strong id="imagesResultTitle">PDF 已生成</strong>
+                <p id="imagesResultMeta"></p>
+              </div>
+              <div class="result-actions">
+                <button class="btn btn-primary" type="button" id="imagesDownloadBtn">
+                  <svg class="icon"><use href="#i-download"></use></svg>
+                  下载 PDF
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PDF 转图片 -->
+        <section class="tool-panel" id="panel-pdf2img" data-panel="pdf2img" hidden>
+          <div class="panel-head">
+            <div>
+              <span class="eyebrow"><i></i>PDF TO IMAGES</span>
+              <h1>PDF 转图片</h1>
+              <p>把 PDF 的每一页导出为清晰的 PNG 或 JPG，并自动打包下载。</p>
+            </div>
+            <button class="btn btn-primary" type="button" id="pdf2imgOpenBtn">
+              <svg class="icon"><use href="#i-plus"></use></svg>
+              打开 PDF
+            </button>
+          </div>
+
+          <div class="empty-card" id="pdf2imgEmpty">
+            <div class="empty-illustration compact" aria-hidden="true">
+              <svg viewBox="0 0 172 132" fill="none">
+                <path d="M47 24h57l17 17v68H47V24Z" fill="#fffdf8" stroke="#24372e" stroke-width="1.6"/>
+                <path d="M104 24.3V41h16.8" stroke="#24372e" stroke-width="1.6"/>
+                <path d="M60 53h44M60 63h46M60 73h27" stroke="#b9c9be" stroke-width="4" stroke-linecap="round"/>
+                <rect x="95" y="75" width="49" height="36" rx="5" fill="#e2eee6" stroke="#2f6b55" stroke-width="1.6"/>
+                <circle cx="108" cy="85" r="4" fill="#f2c9a8" stroke="#7c3f2a" stroke-width="1"/>
+                <path d="m98 106 12-12 8 7 7-6 10 11" fill="#fffdf8" stroke="#2f6b55" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M141 28v12M135 34h12" stroke="#e7a77e" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h2>选择要转换的 PDF</h2>
+            <p>可以导出全部页面，也可以只导出指定范围。</p>
+            <button class="btn btn-primary" type="button" id="pdf2imgChooseBtn">
+              <svg class="icon"><use href="#i-folder"></use></svg>
+              选择 PDF 文件
+            </button>
+            <span class="empty-note">支持 PNG / JPG · 最高 300 DPI</span>
+          </div>
+
+          <div class="pdf2img-workspace" id="pdf2imgWorkspace" hidden>
+            <div class="split-layout">
+              <div class="preview-card">
+                <div class="preview-card-head">
+                  <span class="section-label">当前文档</span>
+                  <button class="text-button" type="button" id="pdf2imgReplace">更换</button>
+                </div>
+                <div class="document-preview">
+                  <img id="pdf2imgCover" alt="PDF 封面预览">
+                  <span class="paper-shadow"></span>
+                </div>
+                <h2 id="pdf2imgDocName">文档.pdf</h2>
+                <p id="pdf2imgDocMeta">0 页</p>
+                <div class="doc-facts">
+                  <div><span>页数</span><strong id="pdf2imgFactPages">0</strong></div>
+                  <div><span>大小</span><strong id="pdf2imgFactSize">0 MB</strong></div>
+                </div>
+                <div class="mini-pages" id="pdf2imgMiniPages"></div>
+              </div>
+
+              <div class="settings-column">
+                <div class="option-card">
+                  <div class="section-heading">
+                    <span class="section-label">导出设置</span>
+                    <p>分辨率越高，文件越大</p>
+                  </div>
+
+                  <label class="field-label">图片格式</label>
+                  <div class="chip-group two" id="imageFormatGroup">
+                    <label class="chip"><input type="radio" name="imageFormat" value="png" checked><span>PNG <small>文字更清晰</small></span></label>
+                    <label class="chip"><input type="radio" name="imageFormat" value="jpg"><span>JPG <small>体积更小</small></span></label>
+                  </div>
+
+                  <label class="field-label spaced">分辨率</label>
+                  <div class="chip-group four" id="dpiGroup">
+                    <label class="chip"><input type="radio" name="dpi" value="96"><span>96</span></label>
+                    <label class="chip"><input type="radio" name="dpi" value="150" checked><span>150</span></label>
+                    <label class="chip"><input type="radio" name="dpi" value="200"><span>200</span></label>
+                    <label class="chip"><input type="radio" name="dpi" value="300"><span>300</span></label>
+                  </div>
+                  <p class="field-hint" id="dpiHint">150 DPI · 适合屏幕查看和日常分享。</p>
+
+                  <label class="field-label spaced">导出页面</label>
+                  <div class="range-switch">
+                    <label class="chip"><input type="radio" name="pdf2imgRangeMode" value="all" checked><span>全部页面</span></label>
+                    <label class="chip"><input type="radio" name="pdf2imgRangeMode" value="custom"><span>指定范围</span></label>
+                  </div>
+                  <input class="text-input" type="text" id="pdf2imgRange" placeholder="例如：1-3, 5" spellcheck="false" hidden>
+                  <p class="field-hint" id="pdf2imgRangeHint">将导出文档中的全部页面。</p>
+                </div>
+
+                <div class="result-card" id="pdf2imgResult" hidden>
+                  <div class="result-icon"><svg class="icon"><use href="#i-check"></use></svg></div>
+                  <div class="result-copy">
+                    <strong id="pdf2imgResultTitle">转换完成</strong>
+                    <p id="pdf2imgResultMeta"></p>
+                  </div>
+                  <div class="result-actions">
+                    <button class="btn btn-primary" type="button" id="pdf2imgDownloadBtn">
+                      <svg class="icon"><use href="#i-download"></use></svg>
+                      下载图片 ZIP
+                    </button>
+                  </div>
+                </div>
+
+                <div class="save-bar compact">
+                  <label class="name-field">
+                    <span>压缩包名称</span>
+                    <input type="text" id="pdf2imgName" autocomplete="off" spellcheck="false" aria-label="压缩包名称">
+                    <em>.zip</em>
+                  </label>
+                  <button class="btn btn-primary btn-save" type="button" id="pdf2imgExportBtn">
+                    <svg class="icon"><use href="#i-pdf-image"></use></svg>
+                    转换并打包
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <span><strong>纸间 PDF</strong> · 轻巧、克制、只在本地工作</span>
+        <span>v<span id="appVersion">1.2.0</span></span>
+      </footer>
+    </div>
+  </div>
+
+  <div class="drop-overlay" id="dropOverlay" hidden>
+    <div class="drop-overlay-card">
+      <div class="drop-pulse"><svg class="icon"><use href="#i-upload"></use></svg></div>
+      <strong id="dropTitle">松开即可添加文件</strong>
+      <p id="dropHint">文件只会在本机处理</p>
+    </div>
+  </div>
+
+  <div class="modal-layer" id="modalLayer" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" type="button" data-close-modal aria-label="关闭">
+        <svg class="icon"><use href="#i-close"></use></svg>
+      </button>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+  <div class="busy-layer" id="busyLayer" hidden>
+    <div class="busy-card">
+      <span class="spinner"></span>
+      <strong id="busyTitle">正在处理…</strong>
+      <p id="busyHint">文件只在本机处理，请稍候</p>
+    </div>
+  </div>
+
+  <input type="file" id="pdfFileInput" accept=".pdf,application/pdf" hidden>
+  <input type="file" id="pdfFilesInput" accept=".pdf,application/pdf" multiple hidden>
+  <input type="file" id="imageFilesInput" accept=".jpg,.jpeg,.png,.webp,.bmp,.tif,.tiff,image/*" multiple hidden>
+
+  <script src="/app.js"></script>
+</body>
+</html>
